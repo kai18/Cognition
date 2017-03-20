@@ -1,4 +1,5 @@
 import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.factory.Nd4j;
 
 import java.util.ArrayList;
 
@@ -7,13 +8,13 @@ import java.util.ArrayList;
  */
 public class BackPropagation {
 
-    int numHiddenLayers = 0;
+    private int numHiddenLayers = 0;
     int numhiddenNeurons[];
-    double in[] = null;
-    Layer inputLayer = null;
-    Layer outputLayer = null;
-    Layer hiddenLayers[] = null;
-    ArrayList <INDArray> weights;
+    private double in[] = null;
+    private Layer inputLayer = null;
+    private Layer outputLayer = null;
+    private Layer hiddenLayers[] = null;
+    private ArrayList <INDArray> weights;
     BackPropagation(double in[], int numHiddenLayers, int numHiddenNeurons[])
     {
         this.in = in;
@@ -25,7 +26,14 @@ public class BackPropagation {
             hiddenLayers[i] = new HiddenLayer(numHiddenNeurons[i], hiddenLayers[i-1]);
         }
         outputLayer = new OutputLayer(in.length, hiddenLayers[numHiddenLayers-1]);
-        weights = new ArrayList<INDArray>()
+        weights = new ArrayList<INDArray>(numHiddenLayers+1);
+        for (int i = 0; i < numHiddenLayers; i++)
+        {
+            INDArray weight = Nd4j.zeros(numHiddenNeurons[i], numHiddenNeurons[i]);
+            weights.add(weight);
+        }
+        INDArray weight = Nd4j.rand(outputLayer.getNumNeurons());
+        weights.add(weight);
     }
 
     private void feedForward()
@@ -33,9 +41,7 @@ public class BackPropagation {
         while(true)
         {
             for (int i = 0; i < numHiddenLayers; i++)
-            {
-                hiddenLayers[i].activate();
-            }
+                hiddenLayers[i].activate(weights.get(i));
         }
     }
 }
