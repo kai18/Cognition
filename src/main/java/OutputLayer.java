@@ -13,6 +13,7 @@ public class OutputLayer implements Layer {
 
     OutputLayer(int numNeurons, Layer layerBefore)
     {
+        System.out.println("Inside Output Layer");
         this.layerBefore = layerBefore;
         this.numNeurons = numNeurons;
         neurons = Nd4j.zeros(numNeurons, 1);
@@ -28,7 +29,9 @@ public class OutputLayer implements Layer {
             System.out.println(change);
             double sum = change.sumNumber().doubleValue();
         }
+        System.out.println(neurons);
         Transforms.sigmoid(neurons);
+        System.out.println("Output layer end");
     }
 
     public INDArray getNeurons() {

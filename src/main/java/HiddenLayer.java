@@ -12,6 +12,7 @@ public class HiddenLayer implements Layer {
     private Layer layerBefore = null;
     HiddenLayer(int numNeurons, Layer layerBefore)
     {
+        System.out.println("Inside Hidden Layer");
         this.layerBefore = layerBefore;
         this.numNeurons = numNeurons;
         neurons = Nd4j.zeros(numNeurons, 1);
@@ -20,6 +21,7 @@ public class HiddenLayer implements Layer {
 
     public void activate(INDArray weights)
     {
+
         INDArray previousNeurons = layerBefore.getNeurons();
 
         for (int i = 0 ; i < layerBefore.getNumNeurons(); i++)
@@ -33,6 +35,9 @@ public class HiddenLayer implements Layer {
             System.out.println(neurons);
         }
         Transforms.sigmoid(neurons);
+        System.out.println(neurons);
+        Transforms.sigmoid(neurons);
+        System.out.println("Hidden layer end");
     }
 
     public INDArray getNeurons() {

@@ -23,4 +23,8 @@ public class InputLayer implements Layer {
     public int getNumNeurons() {
         return numNeurons;
     }
+
+    public void activate(INDArray weights) {
+
+    }
 }
