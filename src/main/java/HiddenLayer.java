@@ -1,4 +1,3 @@
-import jdk.nashorn.internal.runtime.regexp.joni.exception.SyntaxException;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.ops.transforms.Transforms;
@@ -15,28 +14,31 @@ public class HiddenLayer implements Layer {
         System.out.println("Inside Hidden Layer");
         this.layerBefore = layerBefore;
         this.numNeurons = numNeurons;
-        neurons = Nd4j.zeros(numNeurons, 1);
+        neurons = Nd4j.zeros(numNeurons);
         System.out.println(neurons);
     }
 
     public void activate(INDArray weights)
     {
+        System.out.println("Hidden Layer");
+        System.out.println(weights);
 
         INDArray previousNeurons = layerBefore.getNeurons();
+        System.out.println(layerBefore.getNeurons());
 
-        for (int i = 0 ; i < layerBefore.getNumNeurons(); i++)
+        for (int i = 0 ; i < numNeurons; i++)
         {
-            INDArray change = weights.getColumn(i).mul(previousNeurons.getDouble(i));
-            System.out.println(change);
-            double sum = change.sumNumber().doubleValue();
-            System.out.println(sum);
+            INDArray temp = weights.getRow(i);
+            System.out.println(temp);
             System.out.println(neurons);
-            neurons.getRow(i).add(sum);
+            double change = previousNeurons.mul(temp).sumNumber().doubleValue();
+            neurons.getColumn(i).addi(change);
+            System.out.println(change);
             System.out.println(neurons);
         }
-        Transforms.sigmoid(neurons);
         System.out.println(neurons);
-        Transforms.sigmoid(neurons);
+        Transforms.sigmoid(neurons,false);
+        System.out.println(neurons);
         System.out.println("Hidden layer end");
     }
 
