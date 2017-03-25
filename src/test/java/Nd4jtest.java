@@ -8,7 +8,8 @@ public class Nd4jtest {
     public static void main(String args[])
     {
         double input[] = {1.2, 0, 1, 1.9, .8, .6 , .9, .23, .50, .78};
-       BackPropagation backProp = new BackPropagation(input,1, new int[]{5});
+        double output[] ={1, 0, 1, 2, 1, 1, 1, 0, 1, 1};
+       BackPropagation backProp = new BackPropagation(input, output,1, new int[]{5});
        backProp.feedForward();
     }
 }
