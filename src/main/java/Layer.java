@@ -9,5 +9,6 @@ public interface Layer {
     public INDArray getNeurons();
     public int getNumNeurons();
     public void activate(INDArray weights);
+    public void setNeurons(INDArray input);
 
 }

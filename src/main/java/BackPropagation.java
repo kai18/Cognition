@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by kaustubh on 3/20/17.
  */
-public class BackPropagation {
+public class BackPropagation implements NeuralNetwork {
 
     private int numHiddenLayers = 0;
     private int numhiddenNeurons[];
@@ -16,61 +16,77 @@ public class BackPropagation {
     private OutputLayer outputLayer = null;
     private HiddenLayer hiddenLayers[] = null;
     private ArrayList<INDArray> weights;
-    private double expectedOutput[] = null;
     private ArrayList errors = null;
-    private float trainingRate = 0;
+    private double trainingRate = 0;
+    INDArray expectedOutput = null;
 
-    BackPropagation(double in[], double expectedOutput[], int numHiddenLayers,
-                    int numHiddenNeurons[], float trainingRate) {
-        this.in = in;
+    BackPropagation(int numHiddenLayers,
+                    int numHiddenNeurons[], double trainingRate, int inputSize) {
         this.trainingRate = trainingRate;
-        this.expectedOutput = expectedOutput;
         this.numhiddenNeurons = numHiddenNeurons;
         this.numHiddenLayers = numHiddenLayers;
         errors = new ArrayList(numHiddenLayers+1);
 
         hiddenLayers = new HiddenLayer[numHiddenLayers];
-        inputLayer = new InputLayer(this.in.length, this.in);
         hiddenLayers[0] = new HiddenLayer(numHiddenNeurons[0], inputLayer);
 
         weights = new ArrayList<INDArray>(numHiddenLayers + 1);
-        weights.add(Nd4j.rand(numHiddenNeurons[0], this.in.length));
+        weights.add(Nd4j.rand(numHiddenNeurons[0], inputSize));
 
         for (int i = 1; i < numHiddenLayers; i++) {
             hiddenLayers[i] = new HiddenLayer(numHiddenNeurons[i], hiddenLayers[i - 1]);
             weights.add(Nd4j.rand(numHiddenNeurons[i], numHiddenNeurons[i - 1]));
         }
 
-        outputLayer = new OutputLayer(this.in.length - 1, hiddenLayers[numHiddenLayers - 1]);
 
         weights.add(Nd4j.rand(outputLayer.getNumNeurons(), numHiddenNeurons[numHiddenLayers - 1]));
     }
 
-    public void train()
+    public void train(double [] input, double[] output)
     {
+        this.in = input;
+        this.expectedOutput = Nd4j.create(output);
+        inputLayer = new InputLayer(this.in.length, this.in);
+        outputLayer = new OutputLayer(this.in.length - 1,
+                hiddenLayers[numHiddenLayers - 1]);
+
+
         feedForward();
         feedBackward();
+        updateWeight();
     }
 
     public void feedBackward()
     {
-        INDArray outputError = calculateOutputError();
+        INDArray outputError = calculateOutputError(expectedOutput, outputLayer.getNeurons());
         errors.add(numHiddenLayers);
         for(int i = numHiddenLayers-1; i >= 0 ;i++)
         {
-            INDArray temp = weights.get(i);
             INDArray hiddenError = Nd4j.zeros(numhiddenNeurons[i]);
             INDArray hiddenLayer = hiddenLayers[i].getNeurons();
             INDArray errorBefore = (INDArray) errors.get(numHiddenLayers-1-i);
             INDArray weight = weights.get(i);
             for (int j = 0; j < hiddenLayers[i].getNumNeurons(); j++)
                 hiddenError.addi(errorBefore.mul(weight.getColumn(i).sumNumber().doubleValue()));
-            hiddenError.muli(Transforms.sigmoid((INDArray) hiddenLayers[i]));
+            hiddenError.muli(sigmoidP((INDArray) hiddenLayers[i]));
             errors.add(hiddenError);
+            System.out.println(hiddenError);
         }
 
     }
 
+    public void updateWeight()
+    {
+        for (int i = 0; i < numHiddenLayers; i++)
+        {
+            INDArray layer = hiddenLayers[i].getNeurons();
+            INDArray weight = weights.get(i);
+            weight.addi(layer.mul(trainingRate).
+                    mul((INDArray) errors.get(numHiddenLayers-i)));
+            System.out.println(weight);
+        }
+
+    }
 
     private INDArray calculateOutputError(INDArray expected, INDArray present) {
         INDArray errors = expected.sub(present);
