@@ -40,6 +40,10 @@ public class OutputLayer implements Layer {
         System.out.println("Output layer end");
     }
 
+    public void setNeurons(INDArray input) {
+
+    }
+
     public INDArray getOuput()
     {
         return neurons;

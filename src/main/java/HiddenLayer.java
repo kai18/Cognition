@@ -42,6 +42,10 @@ public class HiddenLayer implements Layer {
         System.out.println("Hidden layer end");
     }
 
+    public void setNeurons(INDArray input) {
+
+    }
+
     public INDArray getNeurons() {
         return neurons;
     }
