@@ -1,56 +1,45 @@
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
-import org.nd4j.linalg.ops.transforms.Transforms;
-
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.ArrayList;
 
 /**
  * Created by kaustubh on 3/28/17.
  */
 public class HopfieldNeuralNetwork {
 
-    private INDArray weight = null;
+    private RealMatrix weight = null;
     Layer inputLayer = null;
 
 
     public HopfieldNeuralNetwork(int inputSize)
     {
         inputLayer = new InputLayer(inputSize);
-        weight = Nd4j.zeros(inputSize, inputSize);
+        weight = MatrixUtils.createRealMatrix(inputSize, inputSize);
     }
 
     public void train(double input[])
     {
         toBipolar(input);
-
-        inputLayer.setNeurons(Nd4j.create(input));
-        System.out.println(inputLayer.getNeurons());
-        System.out.println(weight);
-        INDArray tempWeight = Nd4j.create(multiply(input));
-        System.out.println(tempWeight);
-       // INDArray tempWeight = inputLayer.getNeurons().mmul(inputLayer.getNeurons().transpose());
-        weight.addi(tempWeight);
-        System.out.println(weight);
+        RealMatrix temp1  = MatrixUtils.createColumnRealMatrix(input);
+        RealMatrix temp2 = MatrixUtils.createRowRealMatrix(input);
+        weight = weight.add(temp1.multiply(temp2));
+        for (int i = 0 ; i < input.length; i++)
+            weight.setEntry(i, i , 0);
     }
 
     public void recall(double pattern[])
     {
         INDArray patternArray = Nd4j.create(pattern);
-        double out[] = new double[inputLayer.getNumNeurons()];
+        double out[] = new double[pattern.length];
         for (int i = 0; i < inputLayer.getNumNeurons(); i++)
         {
-            INDArray temp = patternArray.mul(weight.getRow(i));
+            INDArray temp = patternArray.mul(Nd4j.create(weight.getRow(i)));
             double output = temp.sumNumber().doubleValue();
             out[i] = output;
         }
-        for (int i = 0; i < out.length; i++)
-            System.out.print(out[i]+" ");
-        System.out.println();
         toBinary(out);
-        for (int i = 0; i < out.length; i++)
-            System.out.println(out[i]);
-
+        System.out.println(Nd4j.create(out));
     }
 
     public void toBipolar(double pattern[]) {
@@ -61,8 +50,6 @@ public class HopfieldNeuralNetwork {
             else
                 pattern[i] = 1;
         }
-        System.out.println("P");
-        System.out.println(Nd4j.create(pattern));
     }
 
     public void toBinary(double pattern[])

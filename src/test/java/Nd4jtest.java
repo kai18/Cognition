@@ -12,7 +12,8 @@ public class Nd4jtest {
     static double[] in1 = {0, 1, 0, 1};
     static double[] in2 = {1, 0, 1, 0};
 
-    static double[] in3 = {0.9f, 0.1f, 0.1f};
+
+    static double[] in3 = {1 , 1, 0, 1};
 
     static double[] out1 = {0.9f, 0.1f, 0.1f};
     static double[] out2 = {0.1f, 0.1f, 0.9f};
@@ -36,8 +37,10 @@ public class Nd4jtest {
        System.out.println(temp1.mmul(temp2));
        HopfieldNeuralNetwork net = new HopfieldNeuralNetwork(in1.length);
        net.train(in1);
-      // net.train(in2);
-       //net.recall(in1);
+       net.train(in2);
+       net.recall(in1);
+       net.recall(in2);
+       net.recall(in3);
 
     }
 }
