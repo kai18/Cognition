@@ -6,7 +6,7 @@ import org.nd4j.linalg.factory.Nd4j;
 /**
  * Created by kaustubh on 3/28/17.
  */
-public class HopfieldNeuralNetwork {
+public class HopfieldNeuralNetwork implements NeuralNetwork {
 
     private RealMatrix weight = null;
     Layer inputLayer = null;
@@ -42,7 +42,11 @@ public class HopfieldNeuralNetwork {
         System.out.println(Nd4j.create(out));
     }
 
-    public void toBipolar(double pattern[]) {
+    public void train(double[] inputpp, double[] output) {
+
+    }
+
+    private void toBipolar(double pattern[]) {
         for (int i = 0; i < pattern.length; i++)
         {
             if(pattern[i]<=0)
@@ -52,7 +56,7 @@ public class HopfieldNeuralNetwork {
         }
     }
 
-    public void toBinary(double pattern[])
+    private void toBinary(double pattern[])
     {
         for (int i = 0; i < pattern.length; i++)
         {

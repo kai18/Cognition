@@ -18,7 +18,7 @@ public class BackPropagation implements NeuralNetwork {
     private ArrayList<INDArray> weights;
     private ArrayList errors = null;
     private double trainingRate = 0;
-    INDArray expectedOutput = null;
+    private INDArray expectedOutput = null;
 
     BackPropagation(int numHiddenLayers,
                     int numHiddenNeurons[], double trainingRate, int inputSize) {
@@ -42,6 +42,14 @@ public class BackPropagation implements NeuralNetwork {
         weights.add(Nd4j.rand(outputLayer.getNumNeurons(), numHiddenNeurons[numHiddenLayers - 1]));
     }
 
+    public void train(double[] input) {
+
+    }
+
+    public void recall(double[] input) {
+
+    }
+
     public void train(double [] input, double[] output)
     {
         this.in = input;
@@ -56,7 +64,7 @@ public class BackPropagation implements NeuralNetwork {
         updateWeight();
     }
 
-    public void feedBackward()
+    private void feedBackward()
     {
         INDArray outputError = calculateOutputError(expectedOutput, outputLayer.getNeurons());
         errors.add(numHiddenLayers);
@@ -75,7 +83,7 @@ public class BackPropagation implements NeuralNetwork {
 
     }
 
-    public void updateWeight()
+    private void updateWeight()
     {
         for (int i = 0; i < numHiddenLayers; i++)
         {
@@ -94,7 +102,7 @@ public class BackPropagation implements NeuralNetwork {
         return errors;
     }
 
-    public void feedForward() {
+    private void feedForward() {
         System.out.println(weights.get(numHiddenLayers));
 
         for (int i = 0; i < numHiddenLayers; i++) {
@@ -105,11 +113,11 @@ public class BackPropagation implements NeuralNetwork {
         outputLayer.activate(weights.get(numHiddenLayers));
     }
 
-    protected float sigmoid(float x) {
+    private float sigmoid(float x) {
         return (float) (1.0f / (1.0f + Math.exp((double) (-x))));
     }
 
-    protected INDArray sigmoidP(INDArray array) {
+    private INDArray sigmoidP(INDArray array) {
 
         INDArray temp = Transforms.sigmoid(array, true);
         return temp.mul(temp.sub(1).mul(-1));

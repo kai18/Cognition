@@ -26,7 +26,7 @@ public class Nd4jtest {
     public static void main(String args[])
     {
 
-       /* BackPropagation backProp = new BackPropagation(1, new int[]{5}, .5);
+      /* BackPropagation backProp = new BackPropagation(1,.5, );
         backProp.train(in1, out1);
         backProp.train(in2, out2);
         backProp.train(in3, out3);*/
