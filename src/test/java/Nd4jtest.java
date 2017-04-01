@@ -1,8 +1,13 @@
+import au.com.bytecode.opencsv.CSVReader;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.cpu.nativecpu.NDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.ops.transforms.Transforms;
 import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 /**
  * Created by kaustubh on 3/16/17.
@@ -23,14 +28,13 @@ public class Nd4jtest {
     static double[] test2 = {0.1f, 0.9f, 0.1f};
     static double[] test3 = {0.9f, 0.1f, 0.1f};
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) throws FileNotFoundException {
 
       /* BackPropagation backProp = new BackPropagation(1,.5, );
         backProp.train(in1, out1);
         backProp.train(in2, out2);
         backProp.train(in3, out3);*/
-       double temp[] = {1, -1, 1, -1};
+       /*double temp[] = {1, -1, 1, -1};
 
        INDArray temp1 = Nd4j.create(temp);
        INDArray temp2 = Nd4j.create(temp, new int[]{temp.length, 1});
@@ -40,7 +44,11 @@ public class Nd4jtest {
        net.train(in2);
        net.recall(in1);
        net.recall(in2);
-       net.recall(in3);
+       net.recall(in3);*/
+       File f = new File("/home/kaustubh/IdeaProjects/Cognition/src/test/java/data.csv");
+       FileReader read = new FileReader(f);
+       CsvReader readCsv = new CsvReader(read);
+       System.out.println(readCsv.getHeaders().get(0));
 
     }
 }
