@@ -3,4 +3,11 @@
  */
 public class J48 {
 
+    int selectedAattributes[] = null;
+
+    public void selectAtrributes(int indices[])
+    {
+        selectedAattributes = indices;
+    }
+
 }

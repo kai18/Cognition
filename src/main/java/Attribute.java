@@ -9,7 +9,8 @@ public class Attribute {
     int instanceCount = 0;
     ArrayList <String> values = null;
     Map <String , Integer> attributeInstancesCount;
-    Attribute(ArrayList values, String name)
+    int totalValues = 0;
+    Attribute(ArrayList values, String name, int totalValues)
     {
         this.values = values;
         this.attributeName = name;
@@ -23,6 +24,21 @@ public class Attribute {
             else
                 attributeInstancesCount.put(value, 1);
         }
+    }
+
+    private double log2(double num)
+    {
+        return Math.log(num)/Math.log(2);
+    }
+    public double getAverageEntropy()
+    {
+        for (Map.Entry<String, Integer> attribute:attributeInstancesCount.entrySet())
+        {
+            double nant = attribute.getValue()/totalValues;
+            
+
+        }
+        return 0;
     }
 
 }
