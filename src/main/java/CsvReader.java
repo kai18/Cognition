@@ -15,11 +15,14 @@ public class CsvReader {
     ArrayList <ArrayList> columns = null;
 
 
-    CsvReader(FileReader file)
-    {
+    CsvReader(FileReader file) throws IOException {
           reader = new CSVReader(file);
           columns = new ArrayList<ArrayList>();
+          headers = new ArrayList();
+          getHeaders();
+          initColumns();
     }
+
     public ArrayList getHeaders()
     {
         if(headers == null)
@@ -50,6 +53,10 @@ public class CsvReader {
    public ArrayList getColumn(int index)
    {
        return columns.get(index);
+   }
+
+   public String[] getNextRow() throws IOException {
+       return reader.readNext();
    }
 
 }
