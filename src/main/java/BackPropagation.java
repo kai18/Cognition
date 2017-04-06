@@ -25,7 +25,7 @@ public class BackPropagation implements NeuralNetwork {
         this.trainingRate = trainingRate;
         this.numhiddenNeurons = numHiddenNeurons;
         this.numHiddenLayers = numHiddenLayers;
-        errors = new ArrayList(numHiddenLayers+1);
+        errors = new ArrayList(numHiddenLayers + 1);
 
         hiddenLayers = new HiddenLayer[numHiddenLayers];
         hiddenLayers[0] = new HiddenLayer(numHiddenNeurons[0], inputLayer);
@@ -50,8 +50,7 @@ public class BackPropagation implements NeuralNetwork {
 
     }
 
-    public void train(double [] input, double[] output)
-    {
+    public void train(double[] input, double[] output) {
         this.in = input;
         this.expectedOutput = Nd4j.create(output);
         inputLayer = new InputLayer(this.in.length, this.in);
@@ -64,15 +63,13 @@ public class BackPropagation implements NeuralNetwork {
         updateWeight();
     }
 
-    private void feedBackward()
-    {
+    private void feedBackward() {
         INDArray outputError = calculateOutputError(expectedOutput, outputLayer.getNeurons());
         errors.add(numHiddenLayers);
-        for(int i = numHiddenLayers-1; i >= 0 ;i++)
-        {
+        for (int i = numHiddenLayers - 1; i >= 0; i++) {
             INDArray hiddenError = Nd4j.zeros(numhiddenNeurons[i]);
             INDArray hiddenLayer = hiddenLayers[i].getNeurons();
-            INDArray errorBefore = (INDArray) errors.get(numHiddenLayers-1-i);
+            INDArray errorBefore = (INDArray) errors.get(numHiddenLayers - 1 - i);
             INDArray weight = weights.get(i);
             for (int j = 0; j < hiddenLayers[i].getNumNeurons(); j++)
                 hiddenError.addi(errorBefore.mul(weight.getColumn(i).sumNumber().doubleValue()));
@@ -83,14 +80,12 @@ public class BackPropagation implements NeuralNetwork {
 
     }
 
-    private void updateWeight()
-    {
-        for (int i = 0; i < numHiddenLayers; i++)
-        {
+    private void updateWeight() {
+        for (int i = 0; i < numHiddenLayers; i++) {
             INDArray layer = hiddenLayers[i].getNeurons();
             INDArray weight = weights.get(i);
             weight.addi(layer.mul(trainingRate).
-                    mul((INDArray) errors.get(numHiddenLayers-i)));
+                    mul((INDArray) errors.get(numHiddenLayers - i)));
             System.out.println(weight);
         }
 

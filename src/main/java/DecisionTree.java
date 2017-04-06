@@ -3,5 +3,6 @@
  */
 public interface DecisionTree {
     void train();
+
     void test();
 }

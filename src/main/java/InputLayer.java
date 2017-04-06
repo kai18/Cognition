@@ -9,14 +9,12 @@ public class InputLayer implements Layer {
     private INDArray neurons = null;
     private int numNeurons = 0;
 
-    InputLayer(int numNeurons)
-    {
+    InputLayer(int numNeurons) {
         this.numNeurons = numNeurons;
         System.out.println(neurons);
     }
 
-    InputLayer(int numNeurons, double input[])
-    {
+    InputLayer(int numNeurons, double input[]) {
         this.numNeurons = numNeurons;
         neurons = Nd4j.create(input);
         System.out.println(neurons);
@@ -26,12 +24,12 @@ public class InputLayer implements Layer {
         return neurons;
     }
 
-    public int getNumNeurons() {
-        return numNeurons;
-    }
-
     public void setNeurons(INDArray neurons) {
         this.neurons = neurons;
+    }
+
+    public int getNumNeurons() {
+        return numNeurons;
     }
 
     public void activate(INDArray weights) {
