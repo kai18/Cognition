@@ -3,6 +3,8 @@
  */
 public interface NeuralNetwork {
     void train(double input[]);
+
     void recall(double input[]);
+
     void train(double inputpp[], double output[]);
 }

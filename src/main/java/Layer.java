@@ -6,9 +6,13 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 public interface Layer {
     int numNeurons = 0;
     INDArray neurons = null;
+
     public INDArray getNeurons();
-    public int getNumNeurons();
-    public void activate(INDArray weights);
+
     public void setNeurons(INDArray input);
+
+    public int getNumNeurons();
+
+    public void activate(INDArray weights);
 
 }
