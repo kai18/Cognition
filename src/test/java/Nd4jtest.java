@@ -8,6 +8,7 @@ import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Created by kaustubh on 3/16/17.
@@ -28,7 +29,7 @@ public class Nd4jtest {
     static double[] test2 = {0.1f, 0.9f, 0.1f};
     static double[] test3 = {0.9f, 0.1f, 0.1f};
 
-    public static void main(String args[]) throws FileNotFoundException {
+    public static void main(String args[]) throws IOException {
 
       /* BackPropagation backProp = new BackPropagation(1,.5, );
         backProp.train(in1, out1);
