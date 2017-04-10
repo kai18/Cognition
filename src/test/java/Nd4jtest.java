@@ -21,15 +21,20 @@ public class Nd4jtest {
 
     static double[] in3 = {1 , 1, 0, 1};
 
-    static double[] out1 = {0.9f, 0.1f, 0.1f};
-    static double[] out2 = {0.1f, 0.1f, 0.9f};
-    static double[] out3 = {0.1f, 0.9f, 0.1f};
+    static double[][] out1 = {{4.9f, 9.1f, 1.1f},{5.1f, 7.1f, 2.9f}
+,{2.1f, 5.9f, 8.1f}, {1.1f, 7.1f, 0.9f}, {10.1f, 3.9f, 8.1f}, {6.9f, 9.1f, 1.1f}};
+    /*static double[] out2 = {};
+    static double[] out3 = ;
 
-    static double[] test1 = {0.1f, 0.1f, 0.9f};
-    static double[] test2 = {0.1f, 0.9f, 0.1f};
-    static double[] test3 = {0.9f, 0.1f, 0.1f};
+    static double[] test1 = ;
+    static double[] test2 = ;
+    static double[] test3 = ;*/
 
     public static void main(String args[]) throws IOException {
+
+        INDArray arr = Nd4j.create(out1);
+        KMeans km = new KMeans(2, arr);
+        km.train();
 
       /* BackPropagation backProp = new BackPropagation(1,.5, );
         backProp.train(in1, out1);
@@ -45,11 +50,12 @@ public class Nd4jtest {
        net.train(in2);
        net.recall(in1);
        net.recall(in2);
-       net.recall(in3);*/
+       net.recall(in3);
        File f = new File("/home/kaustubh/IdeaProjects/Cognition/src/test/java/data.csv");
        FileReader read = new FileReader(f);
        CsvReader readCsv = new CsvReader(read);
-       System.out.println(readCsv.getHeaders().get(0));
+       System.out.println(readCsv.getHeaders().get(0));*/
+
 
     }
 }
