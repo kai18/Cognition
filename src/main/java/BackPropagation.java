@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by kaustubh on 3/20/17.
  */
-public class BackPropagation implements NeuralNetwork {
+public class BackPropagation{
 
     private int numHiddenLayers = 0;
     private int numhiddenNeurons[];
@@ -56,6 +56,7 @@ public class BackPropagation implements NeuralNetwork {
         inputLayer = new InputLayer(this.in.length, this.in);
         outputLayer = new OutputLayer(this.in.length - 1,
                 hiddenLayers[numHiddenLayers - 1]);
+
 
 
         feedForward();

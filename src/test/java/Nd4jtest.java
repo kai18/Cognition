@@ -23,12 +23,13 @@ public class Nd4jtest {
 
     static double[][] out1 = {{4.9f, 9.1f, 1.1f},{5.1f, 7.1f, 2.9f}
 ,{2.1f, 5.9f, 8.1f}, {1.1f, 7.1f, 0.9f}, {10.1f, 3.9f, 8.1f}, {6.9f, 9.1f, 1.1f}};
-    /*static double[] out2 = {};
-    static double[] out3 = ;
 
-    static double[] test1 = ;
-    static double[] test2 = ;
-    static double[] test3 = ;*/
+    static double[] out2 = {4.9f, 9.1f, 1.1f};
+    static double[] out3 = {5.1f, 7.1f, 2.9f};
+
+    static double[] test1 ={1.1f, 7.1f, 0.9f} ;
+    static double[] test2 = {10.1f, 3.9f, 8.1f};
+    static double[] test3 = {10.1f, 3.9f, 8.1f};
 
     public static void main(String args[]) throws IOException {
 
@@ -36,11 +37,12 @@ public class Nd4jtest {
         KMeans km = new KMeans(2, arr);
         km.train();
 
-      /* BackPropagation backProp = new BackPropagation(1,.5, );
-        backProp.train(in1, out1);
-        backProp.train(in2, out2);
-        backProp.train(in3, out3);*/
-       /*double temp[] = {1, -1, 1, -1};
+        /*int num[] = {4};
+        BackPropagation backProp = new BackPropagation(1, num,.5, out1.length);
+        backProp.train(in1, out2);
+        backProp.train(in2, out3);
+        backProp.train(in3, test1);
+        double temp[] = {1, -1, 1, -1};
 
        INDArray temp1 = Nd4j.create(temp);
        INDArray temp2 = Nd4j.create(temp, new int[]{temp.length, 1});
@@ -51,7 +53,7 @@ public class Nd4jtest {
        net.recall(in1);
        net.recall(in2);
        net.recall(in3);
-       File f = new File("/home/kaustubh/IdeaProjects/Cognition/src/test/java/data.csv");
+      /* File f = new File("/home/kaustubh/IdeaProjects/Cognition/src/test/java/data.csv");
        FileReader read = new FileReader(f);
        CsvReader readCsv = new CsvReader(read);
        System.out.println(readCsv.getHeaders().get(0));*/
