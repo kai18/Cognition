@@ -1,4 +1,4 @@
-package Tree;
+package tree;
 
 import java.io.File;
 import java.io.IOException;
@@ -110,7 +110,7 @@ public class MyC45 {
         System.out.println("age: " + age.gain);
 
 		/*
-		for(Tree.Attribute a : attributes){
+		for(tree.Attribute a : attributes){
 			System.out.println(a.toString());
 		}
 		*/

@@ -1,3 +1,5 @@
+package neuralnetwork;
+
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
@@ -21,12 +23,12 @@ public class KMeans {
     {
         clusterCenterIndex = new ArrayList<Integer>();
         this.data = data;
+        System.out.println("********Data Set********");
         System.out.println(this.data);
         this.numCluster = cluster;
         clusterCenter = new ArrayList<INDArray>();
         clusterCollection = new HashMap<Integer, Integer>();
-        System.out.println(data.getRow(0));
-        System.out.println(data.getColumn(0));
+
     }
 
     private double calculateDistance(INDArray a1, INDArray a2)
@@ -36,6 +38,7 @@ public class KMeans {
 
     public void init()
     {
+        System.out.println("Initial Cluster Centres");
         Random rand = new Random();
         for (int i = 0; i < numCluster; i++) {
             clusterCenterIndex.add(rand.nextInt(data.columns()));
@@ -51,24 +54,24 @@ public class KMeans {
         ArrayList <INDArray> list = new ArrayList<INDArray>(numCluster);
         for (int index: clusterCenterIndex)
         {
+            INDArray arr = null;
             int i = 0;
-            INDArray arr = Nd4j.create(clusterMemberCount.get(i), data.columns());
+            if(clusterMemberCount.get(i) > 0)
+                arr = Nd4j.create(clusterMemberCount.get(i), data.columns());
+
             for (Map.Entry<Integer, Integer> entry: newCluster.entrySet())
             {
-                System.out.println("Entry Set: "+ data.getRow(entry.getValue()));
                 if(entry.getValue() ==  index)
                     arr.putRow(i++, data.getRow(entry.getKey()));
             }
-            System.out.println(arr);
             INDArray array = Nd4j.create(data.columns());
-            for (int j = 0; j < arr.columns(); j++)
+            for (int j = 0; j < data.columns(); j++)
             {
-                System.out.println("J: "+ j);
                 INDArray temp = arr.getColumn(j);
                 double sum = temp.sumNumber().doubleValue();
-                array.putScalar(i, sum);
-                System.out.println("New cluster center: "+array);
+                array.putScalar(j, sum);
             }
+            System.out.println("New cluster center: "+array);
             list.add(array);
         }
 
@@ -82,15 +85,13 @@ public class KMeans {
         for (int i = 0; i < numCluster; i++)
         {
             double d =calculateDistance(row, clusterCenter.get(i));
-            System.out.println("d "+ d);
             if(distance > d)
             {
                 distance = d;
                 index = i;
-                System.out.println("distance: "+distance);
             }
         }
-        System.out.println("Index is: "+ index);
+        System.out.println("distance: "+distance);
         return index;
     }
 
@@ -105,29 +106,35 @@ public class KMeans {
         init();
         Map<Integer, Integer> newCluster = new HashMap<Integer, Integer>();
         boolean stop = false;
+        int temp = maxIterations;
         while(!stop || maxIterations > 0) {
-            System.out.println("Iteration: "+ maxIterations);
+            System.out.println("******Iteration: "+ (temp-maxIterations)+"************");
             ArrayList <Integer> clusterMemberCount = new ArrayList<Integer>(numCluster);
             for (int i = 0; i < numCluster; i++)
             {
                 clusterMemberCount.add(0);
             }
-            System.out.println("List :"+ clusterMemberCount);
             for (int i = 0; i < data.rows(); i++) {
                 int belongsToCluster = getBelongsToCluster(data.getRow(i));
                 clusterMemberCount.add(belongsToCluster,
                         clusterMemberCount.get(belongsToCluster)+1);
 
-                System.out.println("Cluster: "+ clusterMemberCount.get(belongsToCluster));
+                System.out.println("Data Set "+ data.getRow(i));
                 System.out.println("Belongs to: "+belongsToCluster);
                 newCluster.put(i, belongsToCluster);
-                System.out.println(newCluster.get(i));
             }
             calculateCenter(newCluster, clusterMemberCount);
 
             stop = changes(newCluster, clusterCollection);
             clusterCollection = newCluster;
             maxIterations--;
+        }
+
+        for (Map.Entry<Integer, Integer> entry: clusterCollection.entrySet())
+        {
+            System.out.print("Data at index ");
+            System.out.print(entry.getKey());
+            System.out.println(" Belongs to cluster "+ entry.getValue());
         }
 
     }
