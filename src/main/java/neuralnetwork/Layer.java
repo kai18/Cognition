@@ -11,7 +11,7 @@ public interface Layer {
 
     public INDArray getNeurons();
 
-    public void setNeurons(INDArray input);
+    public void setNeurons(double input[]);
 
     public int getNumNeurons();
 

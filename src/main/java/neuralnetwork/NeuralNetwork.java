@@ -8,5 +8,5 @@ public interface NeuralNetwork {
 
     void recall(double input[]);
 
-    void train(double inputpp[], double output[]);
+    void train(double input[], double output[]);
 }

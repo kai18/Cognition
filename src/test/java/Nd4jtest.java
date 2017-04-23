@@ -26,15 +26,15 @@ public class Nd4jtest {
     public static void main(String args[]) throws IOException {
 
         /*INDArray arr = Nd4j.create(out1);
-        neuralnetwork.KMeans km = new neuralnetwork.KMeans(2, arr);
+        KMeans km = new KMeans(2, arr);
         km.train();*/
 
-        int num[] = {4};
+       /* int num[] = {4};
         BackPropagation backProp = new BackPropagation(1, num,.5, out1.length);
         backProp.train(in1, out2);
         backProp.train(in2, out3);
         backProp.train(in3, test1);
-        double temp[] = {1, -1, 1, -1};
+        double temp[] = {1, -1, 1, -1};*/
 
        /*INDArray temp1 = Nd4j.create(temp);
        INDArray temp2 = Nd4j.create(temp, new int[]{temp.length, 1});
