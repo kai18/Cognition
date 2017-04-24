@@ -11,14 +11,25 @@ import java.util.ArrayList;
  */
 public class BackPropagation implements NeuralNetwork{
 
-    BackPropagation(int numInputLayerNeurons, int numHiddenLayers, int numHiddenLayerNeurons[], double learningRate)
+
+    int numInputLayerNeurons;
+    int numHiddenLayers
+    int numHiddenLayerNeurons[];
+
+    public BackPropagation(int numInputLayerNeurons, int numHiddenLayers,
+                           int[] numHiddenLayerNeurons, int numOuputLayerNeurons,
+                           double learningRate)
     {
-
+        this.numInputLayerNeurons = numInputLayerNeurons;
+        this.numHiddenLayers = numHiddenLayers;
+        this.numHiddenLayerNeurons = numHiddenLayerNeurons;
+        this.numOuputLayerNeurons = numOuputLayerNeurons;
+        this.learningRate = learningRate;
     }
 
-    public void train(double[] input) {
+    int numOuputLayerNeurons;
+    double learningRate;
 
-    }
 
     public void recall(double[] input) {
 
