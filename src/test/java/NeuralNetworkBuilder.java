@@ -8,14 +8,11 @@ public class NeuralNetworkBuilder {
     private int numHiddenLayerUnits[];
     private int numInputLayerUnits;
     private int numOutputLayerUnits;
-    private int 
-
 
     public void setTopology(NeuralNetworkTopology topology)
     {
         this.topology = topology;
     }
-
 
 
 }
