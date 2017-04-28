@@ -4,6 +4,11 @@
 public class NeuralNetworkBuilder {
 
     private NeuralNetworkTopology topology;
+    private int numHiddenLayers;
+    private int numHiddenLayerUnits[];
+    private int numInputLayerUnits;
+    private int numOutputLayerUnits;
+    private int 
 
 
     public void setTopology(NeuralNetworkTopology topology)
