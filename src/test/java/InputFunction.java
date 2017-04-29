@@ -5,6 +5,6 @@
 import java.util.ArrayList;
 
 public interface InputFunction {
-    double getOutput(ArrayList<Connection> connections);
+    double getInput(ArrayList<Connection> connections);
 
 }

@@ -1,4 +1,4 @@
-import org.nd4j.linalg.api.ndarray.INDArray;
+import java.util.ArrayList;
 
 /**
  * Created by kaustubh on 4/24/17.
@@ -6,5 +6,10 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 public interface NeuralNetworkTopology {
     public void getWeight();
     public void setWeight();
+    public Layer getInputLayer();
+    public Layer getOutputLayer();
+    public Layer getLayer(int i);
+    public ArrayList<Layer> getHiddenLayers();
+    public Layer getHiddenLayer(int i);
 
 }
