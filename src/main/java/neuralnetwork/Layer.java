@@ -1,3 +1,5 @@
+package neuralnetwork;
+
 import org.nd4j.linalg.api.ndarray.INDArray;
 
 /**
@@ -9,7 +11,7 @@ public interface Layer {
 
     public INDArray getNeurons();
 
-    public void setNeurons(INDArray input);
+    public void setNeurons(double input[]);
 
     public int getNumNeurons();
 

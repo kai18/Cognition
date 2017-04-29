@@ -1,3 +1,5 @@
+package neuralnetwork;
+
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
@@ -11,12 +13,13 @@ public class InputLayer implements Layer {
 
     InputLayer(int numNeurons) {
         this.numNeurons = numNeurons;
+        neurons = Nd4j.create(this.numNeurons);
         System.out.println(neurons);
     }
 
     InputLayer(int numNeurons, double input[]) {
         this.numNeurons = numNeurons;
-        neurons = Nd4j.create(input);
+        neurons = Nd4j.create(numNeurons);
         System.out.println(neurons);
     }
 

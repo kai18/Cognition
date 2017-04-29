@@ -1,17 +1,20 @@
+package neuralnetwork;
+
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.ops.transforms.Transforms;
 
 /**
- * Created by kaustubh on 3/18/17.
+ * Created by kaustubh on 3/20/17.
  */
-public class HiddenLayer implements Layer {
+public class OutputLayer implements Layer {
+
     private int numNeurons = 0;
     private INDArray neurons = null;
     private Layer layerBefore = null;
 
-    HiddenLayer(int numNeurons, Layer layerBefore) {
-        System.out.println("Inside Hidden Layer");
+    OutputLayer(int numNeurons, Layer layerBefore) {
+        System.out.println("Inside Output neuralnetwork.Layer");
         this.layerBefore = layerBefore;
         this.numNeurons = numNeurons;
         neurons = Nd4j.zeros(numNeurons);
@@ -19,12 +22,9 @@ public class HiddenLayer implements Layer {
     }
 
     public void activate(INDArray weights) {
-        System.out.println("Hidden Layer");
+        System.out.println("Inside output layer");
         System.out.println(weights);
-
         INDArray previousNeurons = layerBefore.getNeurons();
-        System.out.println(layerBefore.getNeurons());
-
         for (int i = 0; i < numNeurons; i++) {
             INDArray temp = weights.getRow(i);
             System.out.println(temp);
@@ -35,9 +35,12 @@ public class HiddenLayer implements Layer {
             System.out.println(neurons);
         }
         System.out.println(neurons);
-        Transforms.sigmoid(neurons, false);
-        System.out.println(neurons);
-        System.out.println("Hidden layer end");
+        Transforms.sigmoid(neurons);
+        System.out.println("Output layer end");
+    }
+
+    public INDArray getOuput() {
+        return neurons;
     }
 
     public INDArray getNeurons() {

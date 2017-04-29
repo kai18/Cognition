@@ -1,3 +1,6 @@
+import neuralnetwork.InputLayer;
+import neuralnetwork.Layer;
+import neuralnetwork.NeuralNetwork;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.nd4j.linalg.api.ndarray.INDArray;
