@@ -7,15 +7,19 @@ public class Neuron {
     ActivationFunction function;
     ArrayList<Connection> inputConnections;
     ArrayList<Connection> outputConnections;
-    ActivationFunction input;
-    ActivationFunction output;
+    InputFunction inputFunction;
+    ActivationFunction activationFunction;
+    double netInput;
+    double output;
 
     public void getOutput(){
 
     }
 
-    public void getInput()
+    public double getNetInput()
     {
-        input.activate(inputConnections);
+        return this.netInput;
+
     }
+
 }

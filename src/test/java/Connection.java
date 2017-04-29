@@ -8,6 +8,11 @@ public class Connection {
 
     public double getWeight()
     {
-        return weight;
+        return this.weight;
+    }
+
+    public double getWeightedOutput()
+    {
+        return to.getNetInput()*weight;
     }
 }
