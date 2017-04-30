@@ -10,7 +10,8 @@ public class Neuron {
     InputFunction inputFunction;
     ActivationFunction activationFunction;
     double netInput = 0;
-    double output;
+    double output = 0;
+    double error = 0;
 
     public Neuron(InputFunction inputFunction,
                   ActivationFunction activationFunction) {
@@ -18,6 +19,8 @@ public class Neuron {
         this.outputConnections = outputConnections;
         this.inputFunction = inputFunction;
         this.activationFunction = activationFunction;
+        this.netInput = 0d;
+        this.output = 0d;
     }
 
 
@@ -33,6 +36,11 @@ public class Neuron {
 
     }
 
+    public double getOutput()
+    {
+        return this.output;
+    }
+
     public void addInputConnection(Connection con)
     {
         inputConnections.add(con);
@@ -41,6 +49,26 @@ public class Neuron {
     public void addOutputConnection(Connection con)
     {
         outputConnections.add(con);
+    }
+
+    public double getError()
+    {
+        return error;
+    }
+
+    public void setError(double error)
+    {
+        this.error = error;
+    }
+
+    public ActivationFunction getActivationFunction()
+    {
+        return activationFunction;
+    }
+
+    public ArrayList <Connection> getOutputConnection()
+    {
+        return outputConnections;
     }
 
 }

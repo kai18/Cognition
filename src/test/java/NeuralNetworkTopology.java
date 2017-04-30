@@ -11,5 +11,6 @@ public interface NeuralNetworkTopology {
     public Layer getLayer(int i);
     public ArrayList<Layer> getHiddenLayers();
     public Layer getHiddenLayer(int i);
+    ArrayList<Layer> getLayers();
 
 }

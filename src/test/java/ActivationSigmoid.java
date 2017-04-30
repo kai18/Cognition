@@ -24,7 +24,12 @@ public class ActivationSigmoid implements ActivationFunction {
     }
 
     public double getDerivativeOutput(double netInput) {
-        return output*(1-output);
+        return getOutput(netInput)*(1-getOutput(netInput));
 
+    }
+
+    public double getDerivativeOutput()
+    {
+        return output*(1-output);
     }
 }
