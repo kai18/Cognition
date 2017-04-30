@@ -1,8 +1,4 @@
-import jdk.internal.util.xml.impl.Input;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by kaustubh on 4/30/17.
@@ -31,7 +27,7 @@ public class InputLayer  implements Layer {
     public void setNeurons(double[] input) {
         for (double in: input)
         {
-            
+
         }
 
     }
