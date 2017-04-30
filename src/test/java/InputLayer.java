@@ -7,12 +7,8 @@ public class InputLayer  implements Layer {
 
     int numNeurons;
     ArrayList <Neuron> neurons;
-    InputFunction inputFunction;
-    ActivationFunction activationFunction;
-
-    public InputLayer(InputFunction inputFunctionfunction,
-                      ActivationFunction activationFunction) {
-        this.inputFunction = inputFunctionfunction;
+    InputLayer()
+    {
         this.neurons = new ArrayList<Neuron>();
     }
 
@@ -25,35 +21,10 @@ public class InputLayer  implements Layer {
     }
 
     public void setNeurons(double[] input) {
-        for (double in: input)
-        {
-
-        }
 
     }
 
     public void setNeurons(ArrayList<Neuron> neurons) {
 
     }
-
-    public void addNeuron(Neuron neuron)
-    {
-        if(neuron != null)
-            neurons.add(neuron);
-        else
-            System.out.println("Null neuron");
-    }
-
-    public void addNeuron(int index, Neuron neuron)
-    {
-        if(neuron!=null)
-            neurons.add(index, neuron);
-    }
-
-    public void removeNeuron(int index)
-    {
-        if (!neurons.isEmpty())
-            neurons.remove(index);
-    }
-
 }

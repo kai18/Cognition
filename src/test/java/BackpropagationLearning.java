@@ -20,6 +20,8 @@ public class BackpropagationLearning implements LearningMethod {
         inputLayer.setNeurons(input);
         ArrayList <Layer> hiddenLayers = neuralNetwork.getHiddenLayers();
         Layer outputLayer = neuralNetwork.getOutputLayer();
+        calculateOutputLayerErrors(outputLayer);
+        calculateHiddenLayerErrors(hiddenLayers);
     }
 
     private void calculateActivations(ArrayList<Layer> allLayers)
@@ -32,9 +34,8 @@ public class BackpropagationLearning implements LearningMethod {
         }
     }
 
-    private void calculateOutputLayerErrors()
+    private void calculateOutputLayerErrors(Layer outputLayer)
     {
-        Layer outputLayer = neuralNetwork.getOutputLayer();
         ArrayList<Neuron> neurons = outputLayer.getNeurons();
         int i = 0;
         for (Neuron neuron: neurons) {
@@ -44,9 +45,8 @@ public class BackpropagationLearning implements LearningMethod {
         }
     }
 
-    private void calculateHiddenLayerErrors()
+    private void calculateHiddenLayerErrors(ArrayList<Layer> hiddenLayers)
     {
-        ArrayList <Layer> hiddenLayers = neuralNetwork.getHiddenLayers();
         for (Layer hiddenLayer:hiddenLayers)
         {
             ArrayList<Neuron> neurons = hiddenLayer.getNeurons();
@@ -60,6 +60,11 @@ public class BackpropagationLearning implements LearningMethod {
                 neuron.setError(error);
             }
         }
+    }
+
+    private void updateWeights()
+    {
+
     }
 
 

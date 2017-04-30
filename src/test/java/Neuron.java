@@ -3,72 +3,35 @@ import java.util.ArrayList;
 /**
  * Created by kaustubh on 4/28/17.
  */
-public class Neuron {
+public interface Neuron {
 
-    ArrayList<Connection> inputConnections;
-    ArrayList<Connection> outputConnections;
-    InputFunction inputFunction;
-    ActivationFunction activationFunction;
+    ArrayList<Connection> inputConnections = null;
+    ArrayList<Connection> outputConnections = null;
+    InputFunction inputFunction = null;
+    ActivationFunction activationFunction = null;
     double netInput = 0;
     double output = 0;
     double error = 0;
 
-    public Neuron(InputFunction inputFunction,
-                  ActivationFunction activationFunction) {
-        this.inputConnections = inputConnections;
-        this.outputConnections = outputConnections;
-        this.inputFunction = inputFunction;
-        this.activationFunction = activationFunction;
-        this.netInput = 0d;
-        this.output = 0d;
-    }
+    public void setValue(double value);
+    public double getValue();
 
+    public double fire();
 
-    public double fire(){
-        this.output = this.activationFunction.getOutput(this.netInput);
-        return output;
-    }
+    public double getNetInput();
 
-    public double getNetInput()
-    {
-        this.netInput = this.inputFunction.getInput(inputConnections);
-        return this.netInput;
+    public double getOutput();
 
-    }
+    public void addInputConnection(Connection con);
+    public void addOutputConnection(Connection con);
 
-    public double getOutput()
-    {
-        return this.output;
-    }
+    public double getError();
 
-    public void addInputConnection(Connection con)
-    {
-        inputConnections.add(con);
-    }
+    public void setError(double error);
 
-    public void addOutputConnection(Connection con)
-    {
-        outputConnections.add(con);
-    }
+    public abstract ActivationFunction getActivationFunction();
 
-    public double getError()
-    {
-        return error;
-    }
+    public abstract void setActivationFunction(ActivationFunction function);
 
-    public void setError(double error)
-    {
-        this.error = error;
-    }
-
-    public ActivationFunction getActivationFunction()
-    {
-        return activationFunction;
-    }
-
-    public ArrayList <Connection> getOutputConnection()
-    {
-        return outputConnections;
-    }
-
+    public ArrayList <Connection> getOutputConnection();
 }
