@@ -34,4 +34,5 @@ public interface Neuron {
     public abstract void setActivationFunction(ActivationFunction function);
 
     public ArrayList <Connection> getOutputConnection();
+    public  ArrayList<Connection> getInputConnections();
 }

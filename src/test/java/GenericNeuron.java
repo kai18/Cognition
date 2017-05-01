@@ -72,4 +72,8 @@ public class GenericNeuron implements Neuron {
         return outputConnections;
     }
 
+    public ArrayList<Connection> getInputConnections() {
+        return inputConnections;
+    }
+
 }

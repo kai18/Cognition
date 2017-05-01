@@ -7,7 +7,7 @@ public class MultilayerPerceptron implements NeuralNetworkTopology {
     ArrayList<Layer> layers;
     Layer inputLayer;
     ArrayList<Layer> hiddenLayers;
-
+    Layer outputLayer;
 
     public void getWeight() {
 
@@ -18,15 +18,15 @@ public class MultilayerPerceptron implements NeuralNetworkTopology {
     }
 
     public Layer getInputLayer() {
-        return null;
+        return inputLayer;
     }
 
     public Layer getOutputLayer() {
-        return null;
+        return outputLayer;
     }
 
     public Layer getLayer(int i) {
-        return null;
+        return layers.get(i);
     }
 
     public ArrayList<Layer> getHiddenLayers() {
@@ -34,10 +34,27 @@ public class MultilayerPerceptron implements NeuralNetworkTopology {
     }
 
     public Layer getHiddenLayer(int i) {
-        return null;
+        return hiddenLayers.get(i);
     }
 
     public ArrayList<Layer> getLayers() {
-        return null;
+        return layers;
+    }
+
+    public void addInputLayer(Layer layer)
+    {
+        this.layers.add(layer);
+        this.inputLayer = layer;
+    }
+    public void addHiddenLayer(Layer layer)
+    {
+        layers.add(layer);
+        hiddenLayers.add(layer);
+    }
+
+    public void addOutputLayer(Layer layer)
+    {
+        layers.add(layer);
+        this.outputLayer = outputLayer;
     }
 }

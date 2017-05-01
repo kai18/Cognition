@@ -22,6 +22,11 @@ public class BackpropagationLearning implements LearningMethod {
         Layer outputLayer = neuralNetwork.getOutputLayer();
         calculateOutputLayerErrors(outputLayer);
         calculateHiddenLayerErrors(hiddenLayers);
+        updateWeights(outputLayer);
+        for (Layer hiddenLayer: hiddenLayers)
+        {
+            updateWeights(hiddenLayer);
+        }
     }
 
     private void calculateActivations(ArrayList<Layer> allLayers)
@@ -62,8 +67,18 @@ public class BackpropagationLearning implements LearningMethod {
         }
     }
 
-    private void updateWeights()
+    private void updateWeights(Layer layer)
     {
+        ArrayList <Neuron> neurons = layer.getNeurons();
+        for (Neuron neuron: neurons) {
+            ArrayList<Connection> connections = neuron.getInputConnections();
+            for (Connection con: connections)
+            {
+                Neuron hiddenNeuron = con.getFromNeuron();
+                con.setWeight(con.getWeight()+
+                        (neuron.getError()*hiddenNeuron.getOutput()));
+            }
+        }
 
     }
 
