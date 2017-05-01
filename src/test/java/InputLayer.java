@@ -21,10 +21,15 @@ public class InputLayer  implements Layer {
     }
 
     public void setNeurons(double[] input) {
-
+        for (double in: input)
+        {
+            Neuron n = new InputNeuron();
+            n.setValue(in);
+            neurons.add(n);
+        }
     }
 
     public void setNeurons(ArrayList<Neuron> neurons) {
-
+        this.neurons = neurons;
     }
 }

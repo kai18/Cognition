@@ -5,9 +5,9 @@ import java.util.ArrayList;
  */
 public class BackpropagationLearning implements LearningMethod {
 
-    NeuralNetworkTopology neuralNetwork = null;
-    double input[] = null;
-    double expectedOutput[] = null;
+   private NeuralNetworkTopology neuralNetwork = null;
+   private double input[] = null;
+   private double expectedOutput[] = null;
     BackpropagationLearning(NeuralNetworkTopology neuralNetwork)
     {
         this.neuralNetwork = neuralNetwork;

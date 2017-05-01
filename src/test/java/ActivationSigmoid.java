@@ -11,7 +11,7 @@ public class ActivationSigmoid implements ActivationFunction {
         Transforms.sigmoid(data, false);
     }
 
-    double output = 0;
+    private double output = 0;
     public double getOutput(double netInput) {
         double den = 1d - Math.exp(-netInput);
         this.output = 1/den;

@@ -4,10 +4,18 @@ import java.util.ArrayList;
  * Created by kaustubh on 4/30/17.
  */
 public class MultilayerPerceptron implements NeuralNetworkTopology {
-    ArrayList<Layer> layers;
-    Layer inputLayer;
-    ArrayList<Layer> hiddenLayers;
-    Layer outputLayer;
+    private ArrayList<Layer> layers;
+    private Layer inputLayer;
+    private ArrayList<Layer> hiddenLayers;
+    private Layer outputLayer;
+
+    MultilayerPerceptron()
+    {
+        layers = new ArrayList<Layer>();
+        inputLayer = null;
+        outputLayer = null;
+        hiddenLayers = new ArrayList<Layer>();
+    }
 
     public void getWeight() {
 

@@ -4,13 +4,13 @@ import java.util.ArrayList;
  * Created by kaustubh on 4/30/17.
  */
 public class GenericNeuron implements Neuron {
-    ArrayList<Connection> inputConnections;
-    ArrayList<Connection> outputConnections;
-    InputFunction inputFunction;
-    ActivationFunction activationFunction;
-    double netInput = 0;
-    double output = 0;
-    double error = 0;
+    private ArrayList<Connection> inputConnections;
+    private ArrayList<Connection> outputConnections;
+    private InputFunction inputFunction;
+    private ActivationFunction activationFunction;
+    private double netInput = 0;
+    private double output = 0;
+    private double error = 0;
 
     public void setValue(double value) {
         this.netInput = value;

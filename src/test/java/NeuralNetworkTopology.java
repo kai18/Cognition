@@ -1,9 +1,15 @@
+import neuralnetwork.NeuralNetwork;
+
 import java.util.ArrayList;
 
 /**
  * Created by kaustubh on 4/24/17.
  */
 public interface NeuralNetworkTopology {
+    ArrayList<Layer> layers = null;
+    Layer inputLayer = null;
+    ArrayList<Layer> hiddenLayers = null;
+    Layer outputLayer = null;
     public void getWeight();
     public void setWeight();
     public Layer getInputLayer();

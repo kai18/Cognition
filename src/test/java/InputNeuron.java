@@ -4,10 +4,10 @@ import java.util.ArrayList;
  * Created by kaustubh on 4/30/17.
  */
 public class InputNeuron implements Neuron{
-    ArrayList<Connection> inputConnections = null;
-    ArrayList<Connection> outputConnections = null;
-    double netInput = 0;
-    double output = 0;
+   private ArrayList<Connection> inputConnections = null;
+   private ArrayList<Connection> outputConnections = null;
+   private double netInput = 0;
+   private double output = 0;
 
     public void setValue(double value) {
         this.netInput = value;
@@ -55,5 +55,9 @@ public class InputNeuron implements Neuron{
 
     public ArrayList<Connection> getOutputConnection() {
         return null;
+    }
+
+    public ArrayList<Connection> getInputConnections() {
+        return inputConnections;
     }
 }
