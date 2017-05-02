@@ -15,6 +15,7 @@ public class MultilayerPerceptron implements NeuralNetworkTopology {
         inputLayer = null;
         outputLayer = null;
         hiddenLayers = new ArrayList<Layer>();
+
     }
 
     public void getWeight() {
@@ -48,6 +49,7 @@ public class MultilayerPerceptron implements NeuralNetworkTopology {
     public ArrayList<Layer> getLayers() {
         return layers;
     }
+
 
     public void addInputLayer(Layer layer)
     {

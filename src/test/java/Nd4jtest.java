@@ -25,6 +25,12 @@ public class Nd4jtest {
 
     public static void main(String args[]) throws IOException {
 
+        NeuralNetworkTopology mnn = new MultilayerPerceptron();
+        NeuralNetworkBuilder builder = new NeuralNetworkBuilder();
+        builder.setTopology(mnn);
+        BackpropagationLearning learning = new BackpropagationLearning(mnn);
+
+
         /*INDArray arr = Nd4j.create(out1);
         KMeans km = new KMeans(2, arr);
         km.train();*/

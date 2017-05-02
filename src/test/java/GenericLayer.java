@@ -5,10 +5,17 @@ import java.util.ArrayList;
  */
 public class GenericLayer{
 
-    int numNeurons;
     ArrayList <Neuron> neurons;
     String activationFunction= null;
     String inputFunction = null;
+
+    public GenericLayer(String activationFunction, String inputFunction) {
+        this.neurons = new ArrayList<Neuron>();
+        this.activationFunction = activationFunction;
+        this.inputFunction = inputFunction;
+    }
+
+
 
     public int getNumNeurons() {
         return neurons.size();
@@ -23,7 +30,10 @@ public class GenericLayer{
         {
             Neuron n = new InputNeuron();
             n.setValue(in);
+            n.setActivationFunction(ActivationFunctionFactory.
+                    getActivationFunction(activationFunction));
             neurons.add(n);
+
         }
     }
 

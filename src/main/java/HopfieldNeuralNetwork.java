@@ -16,7 +16,6 @@ public class HopfieldNeuralNetwork implements NeuralNetwork {
 
 
     public HopfieldNeuralNetwork(int inputSize) {
-        inputLayer = new InputLayer(inputSize);
         weight = MatrixUtils.createRealMatrix(inputSize, inputSize);
     }
 
