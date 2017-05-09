@@ -1,20 +1,22 @@
+package neuralnetwork;
+
 import java.util.ArrayList;
 
 /**
  * Created by kaustubh on 4/30/17.
  */
-public class InputNeuron implements Neuron{
-   private ArrayList<Connection> inputConnections = null;
-   private ArrayList<Connection> outputConnections = null;
-   private double netInput = 0;
-   private double output = 0;
-
-    public void setValue(double value) {
-        this.netInput = value;
-    }
+public class InputNeuron implements Neuron {
+    private ArrayList<Connection> inputConnections = null;
+    private ArrayList<Connection> outputConnections = null;
+    private double netInput = 0;
+    private double output = 0;
 
     public double getValue() {
         return this.netInput;
+    }
+
+    public void setValue(double value) {
+        this.netInput = value;
     }
 
     public double fire() {

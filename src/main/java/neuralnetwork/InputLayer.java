@@ -1,41 +1,36 @@
 package neuralnetwork;
 
-import org.nd4j.linalg.api.ndarray.INDArray;
-import org.nd4j.linalg.factory.Nd4j;
+import java.util.ArrayList;
 
 /**
- * Created by kaustubh on 3/19/17.
+ * Created by kaustubh on 4/30/17.
  */
 public class InputLayer implements Layer {
 
-    private INDArray neurons = null;
-    private int numNeurons = 0;
+    int numNeurons;
+    ArrayList<Neuron> neurons;
 
-    InputLayer(int numNeurons) {
-        this.numNeurons = numNeurons;
-        neurons = Nd4j.create(this.numNeurons);
-        System.out.println(neurons);
-    }
-
-    InputLayer(int numNeurons, double input[]) {
-        this.numNeurons = numNeurons;
-        neurons = Nd4j.create(numNeurons);
-        System.out.println(neurons);
-    }
-
-    public INDArray getNeurons() {
-        return neurons;
-    }
-
-    public void setNeurons(INDArray neurons) {
-        this.neurons = neurons;
+    InputLayer() {
+        this.neurons = new ArrayList<Neuron>();
     }
 
     public int getNumNeurons() {
-        return numNeurons;
+        return neurons.size();
     }
 
-    public void activate(INDArray weights) {
+    public ArrayList<Neuron> getNeurons() {
+        return neurons;
+    }
 
+    public void setNeurons(ArrayList<Neuron> neurons) {
+        this.neurons = neurons;
+    }
+
+    public void setNeurons(double[] input) {
+        for (double in : input) {
+            Neuron n = new InputNeuron();
+            n.setValue(in);
+            neurons.add(n);
+        }
     }
 }

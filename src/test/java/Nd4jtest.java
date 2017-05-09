@@ -1,4 +1,7 @@
-import neuralnetwork.BackPropagation;
+import neuralnetwork.BackpropagationLearning;
+import neuralnetwork.MultilayerPerceptron;
+import neuralnetwork.NeuralNetworkBuilder;
+import neuralnetwork.NeuralNetworkTopology;
 
 import java.io.IOException;
 
@@ -25,10 +28,10 @@ public class Nd4jtest {
 
     public static void main(String args[]) throws IOException {
 
-        NeuralNetworkTopology mnn = new MultilayerPerceptron();
-        NeuralNetworkBuilder builder = new NeuralNetworkBuilder();
-        builder.setTopology(mnn);
-        BackpropagationLearning learning = new BackpropagationLearning(mnn);
+        //NeuralNetworkTopology mnn = new MultilayerPerceptron();
+        //NeuralNetworkBuilder builder = new NeuralNetworkBuilder();
+        //builder.setTopology(mnn);
+        //BackpropagationLearning learning = new BackpropagationLearning(mnn);
 
 
         /*INDArray arr = Nd4j.create(out1);
@@ -45,7 +48,7 @@ public class Nd4jtest {
        /*INDArray temp1 = Nd4j.create(temp);
        INDArray temp2 = Nd4j.create(temp, new int[]{temp.length, 1});
        System.out.println(temp1.mmul(temp2));
-       HopfieldNeuralNetwork net = new HopfieldNeuralNetwork(in1.length);
+       neuralnetwork.HopfieldNeuralNetwork net = new neuralnetwork.HopfieldNeuralNetwork(in1.length);
        net.train(in1);
        net.train(in2);
        net.recall(in1);

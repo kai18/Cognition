@@ -1,20 +1,19 @@
 package neuralnetwork;
 
-import org.nd4j.linalg.api.ndarray.INDArray;
+import java.util.ArrayList;
 
 /**
- * Created by kaustubh on 3/18/17.
+ * Created by kaustubh on 4/24/17.
  */
 public interface Layer {
     int numNeurons = 0;
-    INDArray neurons = null;
+    ArrayList<Neuron> neurons = null;
 
-    public INDArray getNeurons();
+    int getNumNeurons();
 
-    public void setNeurons(double input[]);
+    ArrayList<Neuron> getNeurons();
 
-    public int getNumNeurons();
+    void setNeurons(ArrayList<Neuron> neurons);
 
-    public void activate(INDArray weights);
-
+    void setNeurons(double input[]);
 }

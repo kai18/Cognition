@@ -1,3 +1,5 @@
+package neuralnetwork;
+
 import java.util.ArrayList;
 
 /**
@@ -13,8 +15,9 @@ public interface Neuron {
     double output = 0;
     double error = 0;
 
-    public void setValue(double value);
     public double getValue();
+
+    public void setValue(double value);
 
     public double fire();
 
@@ -23,6 +26,7 @@ public interface Neuron {
     public double getOutput();
 
     public void addInputConnection(Connection con);
+
     public void addOutputConnection(Connection con);
 
     public double getError();
@@ -33,6 +37,7 @@ public interface Neuron {
 
     public abstract void setActivationFunction(ActivationFunction function);
 
-    public ArrayList <Connection> getOutputConnection();
-    public  ArrayList<Connection> getInputConnections();
+    public ArrayList<Connection> getOutputConnection();
+
+    public ArrayList<Connection> getInputConnections();
 }

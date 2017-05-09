@@ -1,6 +1,5 @@
-import neuralnetwork.InputLayer;
-import neuralnetwork.Layer;
-import neuralnetwork.NeuralNetwork;
+package neuralnetwork;
+
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.nd4j.linalg.api.ndarray.INDArray;
@@ -9,7 +8,7 @@ import org.nd4j.linalg.factory.Nd4j;
 /**
  * Created by kaustubh on 3/28/17.
  */
-public class HopfieldNeuralNetwork implements NeuralNetwork {
+public class HopfieldNeuralNetwork{
 
     Layer inputLayer = null;
     private RealMatrix weight = null;

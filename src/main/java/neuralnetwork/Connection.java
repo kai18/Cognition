@@ -1,3 +1,5 @@
+package neuralnetwork;
+
 /**
  * Created by kaustubh on 4/28/17.
  */
@@ -23,18 +25,16 @@ public class Connection {
         this.fromNeuron = fromNeuron;
     }
 
+    public double getWeight() {
+        return this.weight;
+    }
+
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public double getWeight()
-    {
-        return this.weight;
-    }
-
-    public double getWeightedOutput()
-    {
-        return toNeuron.getNetInput()*weight;
+    public double getWeightedOutput() {
+        return toNeuron.getNetInput() * weight;
     }
 
 
