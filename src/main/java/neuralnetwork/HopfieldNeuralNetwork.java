@@ -30,7 +30,7 @@ public class HopfieldNeuralNetwork{
     public void recall(double pattern[]) {
         INDArray patternArray = Nd4j.create(pattern);
         double out[] = new double[pattern.length];
-        for (int i = 0; i < inputLayer.getNumNeurons(); i++) {
+        for (int i = 0; i < pattern.length; i++) {
             INDArray temp = patternArray.mul(Nd4j.create(weight.getRow(i)));
             double output = temp.sumNumber().doubleValue();
             out[i] = output;

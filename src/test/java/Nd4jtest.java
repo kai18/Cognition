@@ -2,6 +2,8 @@ import neuralnetwork.BackpropagationLearning;
 import neuralnetwork.MultilayerPerceptron;
 import neuralnetwork.NeuralNetworkBuilder;
 import neuralnetwork.NeuralNetworkTopology;
+import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.factory.Nd4j;
 
 import java.io.IOException;
 
@@ -42,13 +44,22 @@ public class Nd4jtest {
         BackPropagation backProp = new BackPropagation(1, num,.5, out1.length);
         backProp.train(in1, out2);
         backProp.train(in2, out3);
-        backProp.train(in3, test1);
-        double temp[] = {1, -1, 1, -1};*/
+        backProp.train(in3, test1);*/
+        double temp[] = {1, -1, 1, -1};
 
-       /*INDArray temp1 = Nd4j.create(temp);
+       INDArray temp1 = Nd4j.create(temp);
        INDArray temp2 = Nd4j.create(temp, new int[]{temp.length, 1});
        System.out.println(temp1.mmul(temp2));
        neuralnetwork.HopfieldNeuralNetwork net = new neuralnetwork.HopfieldNeuralNetwork(in1.length);
+
+       System.out.println("Training Data:");
+       System.out.println(Nd4j.create(in1));
+       System.out.println(Nd4j.create(in2));
+       System.out.println("Test Data");
+       System.out.println(Nd4j.create(in1));
+       System.out.println(Nd4j.create(in2));
+       System.out.println(Nd4j.create(in3));
+       System.out.println("Recalled Data");
        net.train(in1);
        net.train(in2);
        net.recall(in1);

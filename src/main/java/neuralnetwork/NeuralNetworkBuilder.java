@@ -25,5 +25,12 @@ public class NeuralNetworkBuilder {
         }
     }
 
+    public void addLayers(Layer layer)
+    {}
+
+    public void setActivationFunction(ActivationFunction activationFunction)
+    {
+
+    }
 
 }
