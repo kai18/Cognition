@@ -1,3 +1,5 @@
+package neuralnetwork;
+
 import java.util.ArrayList;
 
 /**
@@ -6,7 +8,7 @@ import java.util.ArrayList;
 public class SumofProduct implements InputFunction {
     public double getInput(ArrayList<Connection> connections) {
         double output = 0;
-        for (Connection con: connections)
+        for (Connection con : connections)
             output += con.getWeightedOutput();
         return output;
     }

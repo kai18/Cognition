@@ -1,3 +1,5 @@
+package neuralnetwork;
+
 import java.util.ArrayList;
 
 /**
@@ -9,8 +11,7 @@ public class MultilayerPerceptron implements NeuralNetworkTopology {
     private ArrayList<Layer> hiddenLayers;
     private Layer outputLayer;
 
-    MultilayerPerceptron()
-    {
+    MultilayerPerceptron() {
         layers = new ArrayList<Layer>();
         inputLayer = null;
         outputLayer = null;
@@ -51,19 +52,17 @@ public class MultilayerPerceptron implements NeuralNetworkTopology {
     }
 
 
-    public void addInputLayer(Layer layer)
-    {
+    public void addInputLayer(Layer layer) {
         this.layers.add(layer);
         this.inputLayer = layer;
     }
-    public void addHiddenLayer(Layer layer)
-    {
+
+    public void addHiddenLayer(Layer layer) {
         layers.add(layer);
         hiddenLayers.add(layer);
     }
 
-    public void addOutputLayer(Layer layer)
-    {
+    public void addOutputLayer(Layer layer) {
         layers.add(layer);
         this.outputLayer = outputLayer;
     }

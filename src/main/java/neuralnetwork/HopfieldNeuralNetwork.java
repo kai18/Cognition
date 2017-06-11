@@ -1,6 +1,5 @@
-import neuralnetwork.InputLayer;
-import neuralnetwork.Layer;
-import neuralnetwork.NeuralNetwork;
+package neuralnetwork;
+
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.nd4j.linalg.api.ndarray.INDArray;
@@ -9,7 +8,7 @@ import org.nd4j.linalg.factory.Nd4j;
 /**
  * Created by kaustubh on 3/28/17.
  */
-public class HopfieldNeuralNetwork implements NeuralNetwork {
+public class HopfieldNeuralNetwork{
 
     Layer inputLayer = null;
     private RealMatrix weight = null;
@@ -31,7 +30,7 @@ public class HopfieldNeuralNetwork implements NeuralNetwork {
     public void recall(double pattern[]) {
         INDArray patternArray = Nd4j.create(pattern);
         double out[] = new double[pattern.length];
-        for (int i = 0; i < inputLayer.getNumNeurons(); i++) {
+        for (int i = 0; i < pattern.length; i++) {
             INDArray temp = patternArray.mul(Nd4j.create(weight.getRow(i)));
             double output = temp.sumNumber().doubleValue();
             out[i] = output;

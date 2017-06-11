@@ -1,3 +1,5 @@
+package neuralnetwork;
+
 import java.util.ArrayList;
 
 /**
@@ -12,63 +14,54 @@ public class GenericNeuron implements Neuron {
     private double output = 0;
     private double error = 0;
 
-    public void setValue(double value) {
-        this.netInput = value;
-    }
-
     public double getValue() {
         return this.netInput;
     }
 
-    public double fire(){
+    public void setValue(double value) {
+        this.netInput = value;
+    }
+
+    public double fire() {
         this.output = this.activationFunction.getOutput(this.netInput);
         return output;
     }
 
-    public double getNetInput()
-    {
+    public double getNetInput() {
         this.netInput = this.inputFunction.getInput(inputConnections);
         return this.netInput;
 
     }
 
-    public double getOutput()
-    {
+    public double getOutput() {
         return this.output;
     }
 
-    public void addInputConnection(Connection con)
-    {
+    public void addInputConnection(Connection con) {
         inputConnections.add(con);
     }
 
-    public void addOutputConnection(Connection con)
-    {
+    public void addOutputConnection(Connection con) {
         outputConnections.add(con);
     }
 
-    public double getError()
-    {
+    public double getError() {
         return error;
     }
 
-    public void setError(double error)
-    {
+    public void setError(double error) {
         this.error = error;
     }
 
-    public ActivationFunction getActivationFunction()
-    {
+    public ActivationFunction getActivationFunction() {
         return this.activationFunction;
     }
 
-    public void setActivationFunction(ActivationFunction function)
-    {
+    public void setActivationFunction(ActivationFunction function) {
         this.activationFunction = function;
     }
 
-    public ArrayList<Connection> getOutputConnection()
-    {
+    public ArrayList<Connection> getOutputConnection() {
         return outputConnections;
     }
 
